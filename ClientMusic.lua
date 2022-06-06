@@ -1,7 +1,4 @@
-local Player = game:GetService("Players")
-local PlayerGui = Player.LocalPlayer.PlayerGui.MainGui
-
-local wait()
+wait()
 local Player = game:GetService("Players")
 local PlayerGui = Player.LocalPlayer.PlayerGui:FindFirstChild("MainGui")
 
