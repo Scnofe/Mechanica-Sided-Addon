@@ -1,0 +1,95 @@
+local Player = game:GetService("Players")
+local PlayerGui = Player.LocalPlayer.PlayerGui.MainGui
+
+local RunService = game:GetService("RunService")
+
+local FrameOne_ = Instance.new("Frame")
+FrameOne_.Name = "SpecialFrame"
+FrameOne_.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+FrameOne_.BackgroundTransparency = 1
+FrameOne_.BorderSizePixel = 0
+FrameOne_.Parent = PlayerGui
+FrameOne_:TweenSize(UDim2.new(1,0,1,0))
+while FrameOne_.BackgroundTransparency > 0 do
+	FrameOne_.BackgroundTransparency -= 0.1
+end
+
+local SoundI = Instance.new("Sound")
+SoundI.Parent = FrameOne_
+SoundI.SoundId = "rbxassetid://9046865270"
+SoundI.Playing = true
+
+local FrameTwo_ = Instance.new("Frame")
+FrameTwo_.Name = "Frame1"
+FrameTwo_.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
+FrameTwo_.BackgroundTransparency = 1
+FrameTwo_.BorderSizePixel = 0
+FrameTwo_.Parent = FrameOne_
+FrameTwo_.ClipsDescendants = true
+FrameTwo_:TweenSize(UDim2.new(0.581, 0,0.642, 0))
+FrameTwo_:TweenPosition(UDim2.new(0.209, 0,0.179, 0))
+
+local TopText = Instance.new("TextLabel")
+TopText.Name = "A"
+TopText.BackgroundTransparency = 1
+TopText.TextTransparency = 1
+TopText.Parent = FrameTwo_
+TopText:TweenPosition(UDim2.new(0, 0,-0.776, 0))
+TopText:TweenSize(UDim2.new(1, 0,0.914, 0))
+TopText.Font = "Legacy"
+TopText.TextColor3 = Color3.fromRGB(255,255,255)
+TopText.TextScaled = true
+TopText.Text = "TEMPLATEKON"
+
+local BottomText = Instance.new("TextLabel")
+BottomText.Name = "B"
+BottomText.BackgroundTransparency = 1
+BottomText.TextTransparency = 1
+BottomText.Parent = FrameTwo_
+BottomText:TweenPosition(UDim2.new(0, 0,1, 0))
+BottomText:TweenSize(UDim2.new(1, 0,0.914, 0))
+BottomText.Font = "Legacy"
+BottomText.TextColor3 = Color3.fromRGB(255,255,255)
+BottomText.TextScaled = true
+BottomText.Text = "STUDIOS"
+
+if FrameTwo_:FindFirstChild("A") and FrameTwo_:FindFirstChild("B") then
+
+	wait(1.3)
+	TopText:TweenPosition(UDim2.new(0,0,0,0),"Out","Back",2)
+	wait(0.5)
+	while TopText.TextTransparency > 0 do
+		TopText.TextTransparency -= 0.1
+		wait()
+	end
+	wait(1.6)
+	BottomText:TweenPosition(UDim2.new(0, 0,0.199, 0), "Out", "Sine", 2)
+	wait(0.5)
+	while BottomText.TextTransparency > 0 do
+		BottomText.TextTransparency -= 0.1
+		wait()
+	end
+
+	wait(1.6)
+	while BottomText.TextTransparency < 1 or TopText.TextTransparency < 1 do
+		if BottomText.TextTransparency < 1 then
+			BottomText.TextTransparency += 0.1
+		end
+		if TopText.TextTransparency < 1 then
+			TopText.TextTransparency += 0.1
+		end
+		wait()
+	end
+	wait()
+	while SoundI.Volume > 0 or FrameOne_.BackgroundTransparency < 1 do
+		if FrameOne_.BackgroundTransparency < 1 then
+			FrameOne_.BackgroundTransparency += 0.1
+		end
+		if SoundI.Volume > 0 then
+			SoundI.Volume -= 0.05
+		end
+		wait()
+	end
+	wait(4)
+	FrameOne_:Destroy()
+end
