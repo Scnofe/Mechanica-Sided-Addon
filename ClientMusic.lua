@@ -1,4 +1,4 @@
-print("Hey, "..game.Players.LocalPlayer.Username.."! Please wait while we load this Addon for you!")
+
 wait(3)
 local Player = game:GetService("Players")
 local PlayerGui = Player.LocalPlayer.PlayerGui:FindFirstChild("MainGui")
