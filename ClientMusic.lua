@@ -93,21 +93,23 @@ if FrameTwo_:FindFirstChild("A") and FrameTwo_:FindFirstChild("B") then
 	end
 	wait(1)
 	FrameOne_:Destroy()
-	
+
 	local Sizer = Instance.new("Frame")
 	Sizer.SizeConstraint = Enum.SizeConstraint.RelativeXX
 	Sizer.Parent = PlayerGui
 	Sizer.Name = "AudioPlayer"
 	Sizer.BackgroundTransparency = 1
-	Sizer:TweenSize(UDim2.new(0.152, 0,0.093, 0))
-	Sizer:TweenPosition(UDim2.new(0.848, 0,0.254, 0))
-	
+	Sizer.ClipsDescendants = true
+	Sizer:TweenSize(UDim2.new(0.152, 0,0.121, 0))
+	Sizer:TweenPosition(UDim2.new(0.848, 0,0.174, 0))
+
 	local FrameThree_ = Instance.new("Frame")
 	FrameThree_.Parent = Sizer
 	FrameThree_.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
 	FrameThree_.BorderSizePixel = 0
-	FrameThree_:TweenSize(UDim2.new(1,0,1,0))
-	
+	FrameThree_:TweenSize(UDim2.new(0.997, 0,0.802, 0))
+	FrameThree_:TweenPosition(UDim2.new(0.003, 0,0.198, 0))
+
 	local UiButton = Instance.new("TextButton")
 	UiButton.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
 	UiButton.Name = "Ui"
@@ -119,7 +121,7 @@ if FrameTwo_:FindFirstChild("A") and FrameTwo_:FindFirstChild("B") then
 	UiButton.Text = "Close"
 	UiButton.TextScaled = true
 	UiButton.TextStrokeTransparency = 0.85
-	
+
 end
 
 local AudioPlayer = PlayerGui:FindFirstChild("AudioPlayer")
