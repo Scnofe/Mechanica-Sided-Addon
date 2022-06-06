@@ -1,4 +1,3 @@
-
 wait(3)
 local Player = game:GetService("Players")
 local PlayerGui = Player.LocalPlayer.PlayerGui:FindFirstChild("MainGui")
@@ -96,12 +95,12 @@ if FrameTwo_:FindFirstChild("A") and FrameTwo_:FindFirstChild("B") then
 	FrameOne_:Destroy()
 	
 	local Sizer = Instance.new("Frame")
-	Sizer.SizeConstraint = Enum.SizeConstraint.RelativeYY
+	Sizer.SizeConstraint = Enum.SizeConstraint.RelativeXX
 	Sizer.Parent = PlayerGui
 	Sizer.Name = "AudioPlayer"
 	Sizer.BackgroundTransparency = 1
-	Sizer:TweenSize(UDim2.new(0.564, 0,0.342, 0))
-	Sizer:TweenPosition(UDim2.new(0.658, 0,0.658, 0))
+	Sizer:TweenSize(UDim2.new(0.152, 0,0.093, 0))
+	Sizer:TweenPosition(UDim2.new(0.848, 0,0.254, 0))
 	
 	local FrameThree_ = Instance.new("Frame")
 	FrameThree_.Parent = Sizer
