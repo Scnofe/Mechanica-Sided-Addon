@@ -11,7 +11,7 @@ local setupEngine = function(engine)
     local Ratio, RevLength = Instance.new("NumberValue"), Instance.new("NumberValue")
 
     Ratio.Name, RevLength.Name = "Ratio", "RevLength"
-    Ratio.Value, RevLength.Value = 0.1, 6
+    Ratio.Value, RevLength.Value = 0.1, 12
     Ratio.Parent, RevLength.Parent = Configuration, Configuration
 
     local EngineSound = Instance.new("Sound")
