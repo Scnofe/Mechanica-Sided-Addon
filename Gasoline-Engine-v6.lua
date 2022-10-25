@@ -4,60 +4,62 @@ selfTable.Name = "Engine Sounds"
 local Events, Values = shared.MainGui.Events, shared.MainGui.Values
 local SpawnToggle, Configure = Events.SpawnToggle, Events.Configure
 local setupEngine = function(engine)
-	local Configuration = engine.Configuration
-	if Configuration:FindFirstChild("Ratio") or Configuration:FindFirstChild("RevLength") then
-		return
-	end
-	local Ratio, RevLength = Instance.new("NumberValue"), Instance.new("NumberValue")
-
-	Ratio.Name, RevLength.Name = "Ratio", "RevLength"
-	Ratio.Value, RevLength.Value = 0.2, 21
-	Ratio.Parent, RevLength.Parent = Configuration, Configuration
-
-	local EngineSound = Instance.new("Sound")
-	EngineSound.Name = "EngineSound"
-	EngineSound.SoundId = "rbxassetid://402657196"
-	EngineSound.Looped = true
-	EngineSound.Playing = true
-	EngineSound.Parent = engine.WeldPoint
-
-	local Connections = {}
-	local update = function()
-		if engine and engine.Parent and selfTable.scriptOn and Values.Spawned.Value then
-			local roundedMagnitude = math.round(engine.WeldPoint.AssemblyAngularVelocity.Magnitude)
-
-			EngineSound.PlaybackSpeed = roundedMagnitude * Ratio.Value / RevLength.Value
-			EngineSound.Volume = 0.8 + roundedMagnitude * 0.01 / 5
-		else
-			EngineSound.PlaybackSpeed = 0
-			EngineSound.Volume = 0
+	if engine then
+		local Configuration = engine.Configuration
+		if Configuration:FindFirstChild("Ratio") or Configuration:FindFirstChild("RevLength") then
+			return
 		end
-	end
+		local Ratio, RevLength = Instance.new("NumberValue"), Instance.new("NumberValue")
 
-	local remove = function()
-		table.remove(shared.RenderSteppedFunctions, table.find(shared.RenderSteppedFunctions, update))
+		Ratio.Name, RevLength.Name = "Ratio", "RevLength"
+		Ratio.Value, RevLength.Value = 0.2, 21
+		Ratio.Parent, RevLength.Parent = Configuration, Configuration
 
-		for _, connection in pairs(Connections) do
-			if connection.Connected then
-				connection:Disconnect()
+		local EngineSound = Instance.new("Sound")
+		EngineSound.Name = "EngineSound"
+		EngineSound.SoundId = "rbxassetid://402657196"
+		EngineSound.Looped = true
+		EngineSound.Playing = true
+		EngineSound.Parent = engine.WeldPoint
+
+		local Connections = {}
+		local update = function()
+			if engine and engine.Parent and selfTable.scriptOn and Values.Spawned.Value then
+				local roundedMagnitude = math.round(engine.WeldPoint.AssemblyAngularVelocity.Magnitude)
+
+				EngineSound.PlaybackSpeed = roundedMagnitude * Ratio.Value / RevLength.Value
+				EngineSound.Volume = 0.8 + roundedMagnitude * 0.01 / 5
+			else
+				EngineSound.PlaybackSpeed = 0
+				EngineSound.Volume = 0
 			end
 		end
 
-		if EngineSound then
-			EngineSound:Destroy()
-		end
-		if Ratio then
-			Ratio:Destroy()
-		end
-		if RevLength then
-			RevLength:Destroy()
-		end
-	end
+		local remove = function()
+			table.remove(shared.RenderSteppedFunctions, table.find(shared.RenderSteppedFunctions, update))
 
-	shared:BindToRenderStepped(update)
-	Connections.c2 = engine.Destroying:Connect(function()
-		remove()
-	end)
+			for _, connection in pairs(Connections) do
+				if connection.Connected then
+					connection:Disconnect()
+				end
+			end
+
+			if EngineSound then
+				EngineSound:Destroy()
+			end
+			if Ratio then
+				Ratio:Destroy()
+			end
+			if RevLength then
+				RevLength:Destroy()
+			end
+		end
+
+		shared:BindToRenderStepped(update)
+		Connections.c2 = engine.Destroying:Connect(function()
+			remove()
+		end)
+	end
 end
 
 local old
